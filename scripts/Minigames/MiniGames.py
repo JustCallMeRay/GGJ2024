@@ -17,7 +17,7 @@ enum = {"RATE_THE_JOKE":False,"GUESS_THE_HASH":False}
 
 current_minigame:None|str = None
 
-oli = Message.Message()
+oli = Message()
 
 def get_minigame_start():
     if current_minigame == "RATE_THE_JOKE":
