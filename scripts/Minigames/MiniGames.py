@@ -11,14 +11,18 @@ from . import GuessTheHash
 
 has_wizard_instance:bool = False
 
-enum = {"RATE_THE_JOKE":False,"GUESS_THE_HASH":False}
+enum = {
+    "RATE_THE_JOKE":False,
+    #"GUESS_THE_HASH":False
+    }
 
 current_minigame:None|str = None
 
 def get_minigame_start():
     global current_minigame
     if current_minigame == "RATE_THE_JOKE":
-        return RateThejoke.rate_the_joke()
+        m = Message()
+        return RateThejoke.go(m)
     if current_minigame == "GUESS_THE_HASH":
         return GuessTheHash.guess_the_hash()
     
