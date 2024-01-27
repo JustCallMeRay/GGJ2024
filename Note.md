@@ -9,6 +9,11 @@
 
 - response is funny
 
+## Minigames
+minigames are run by an evil wizard who decides you fate
+
+
+
 ## Strech goals
 - Runable in docker
 - 

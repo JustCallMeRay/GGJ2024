@@ -12,6 +12,8 @@ _nouns_interactables = ["danish pastry", "crosiont"]
 def create_room_prompt(nouns:str|None = None):
     if nouns is None:
         nouns = random_choice(_nouns_funny)
+    elif random_float() > 0.5: 
+        nouns += random_choice(_nouns_funny)
     if random_float() > 0.6 :
         nouns += f", {random_choice(_nouns_quest)}"
     if random_float() > 0.8 :
