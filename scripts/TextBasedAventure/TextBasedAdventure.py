@@ -56,11 +56,11 @@ def _game_loop() -> None:
     print(_clean_string(ai_response))
 
 def start_adventure():
-    print(text_adventure.send(get_start_text() + create_room_prompt()), "system")
+    print(text_adventure.send(get_start_text() + create_room_prompt(), "system"))
     _game_loop()
 
 def continue_adventure():
-    print(text_adventure.send(create_room_prompt()), "system")
+    print(text_adventure.send(create_room_prompt(), "system"))
     _game_loop()
 
 
