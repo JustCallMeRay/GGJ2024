@@ -4,11 +4,11 @@ from OllamaInteractions.Message import Message
 
 
 
-from PromptCreation.StartingPrompt import get_start_text
+from Minigames.PromptCreation.StartingPrompt import get_start_text
 import PromptHelpers
 from random import choice as random_choice
 from enum import Enum
-import RateThejoke
+from MiniGames import RateThejoke
 import GuessTheHash
 
 has_wizard_instance:bool = False;
