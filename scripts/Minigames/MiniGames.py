@@ -25,7 +25,6 @@ def get_minigame_start():
         return RateThejoke.go(m)
     if current_minigame == "GUESS_THE_HASH":
         return GuessTheHash.guess_the_hash()
-    
     else:
         raise Exception("I did not execpt this to happen")
 
@@ -51,7 +50,7 @@ def run_minigame():
     current_minigame = game
     if not has_wizard_instance:
         text = get_start_text(enum[game])
-    text += get_minigame_start()
+    text += get_minigame_start() # type: ignore
     wizard.send(text)
 
 

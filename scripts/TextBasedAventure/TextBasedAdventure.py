@@ -32,8 +32,6 @@ def _clean_string(old:str) -> str:
     old = old.replace("[[DIFFICULTY DOWN]]", "")
     return old
 
-    
-
 def _get_player_input() -> str:
     return f"{Tags.PLAYER}{input()}{Tags.END_PLAYER}"
 
@@ -46,8 +44,8 @@ def start_adventure():
     while not _is_new_room(ai_response):
         print(_clean_string(ai_response))
         ai_response = _send_player_input()
-        
     print(_clean_string(ai_response))
+
 
 
 
