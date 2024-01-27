@@ -16,7 +16,6 @@ minigames are run by an evil wizard who decides you fate
 
 ## Strech goals
 - Runable in docker
-- 
 - Text to speech
 - Web front end
 - AI images

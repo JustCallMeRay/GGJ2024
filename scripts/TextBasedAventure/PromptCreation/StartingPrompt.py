@@ -1,7 +1,7 @@
 ### Creates the first "start a chat" prompt to the llm
 import scripts.Tags as Tags
 
-import PromptHelpers
+from PromptHelpers import saftey_text
 
 def _room_end_tag() -> str:
     return "When a room is completed write [[COMPLETED]] on a sinlge line at the start of your response"
@@ -15,5 +15,5 @@ def get_start_text() -> str:
     """This happens once at the start of the game"""
     # TODO edit and expand
     start = "You are simulating a text based adventure..."
-    return "\n".join([start, _room_end_tag(), PromptHelpers.saftey_text(), _diffiucltly_text()])
+    return "\n".join([start, _room_end_tag(), saftey_text(), _diffiucltly_text()])
 
