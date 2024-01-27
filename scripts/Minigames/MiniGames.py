@@ -8,8 +8,8 @@ from Minigames.PromptCreation.StartingPrompt import get_start_text
 import PromptHelpers
 from random import choice as random_choice
 from enum import Enum
-from MiniGames import RateThejoke
-import GuessTheHash
+from . import RateThejoke
+from . import GuessTheHash
 
 has_wizard_instance:bool = False;
 

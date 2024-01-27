@@ -1,4 +1,6 @@
 
+from typing import Tuple
+
 # doesn't use wizard (new AI instance)
 def rate_the_joke():
     return "Ask the player to tell you a joke, if it is funny enough you will let them through"
@@ -16,13 +18,13 @@ def get_rating(player_input:str) -> str:
     # TODO give the input to the AI and get a response
     return ""
 
-def _reponse_after(start_after:str|int, whole:str) -> str:
+def _reponse_after(start_after:str, whole:str) -> str:
     if isinstance(start_after, int):
         return whole[start_after:]
     start = whole.index(start_after) + len(start_after)
     return whole[start:]
 
-def was_success(player_input:str) -> tuple[bool,str]:
+def was_success(player_input:str) -> Tuple[bool,str]:
     ai_text = get_rating(player_input)
     if "GOOD" in ai_text:
         return True, _reponse_after("GOOD", ai_text)
