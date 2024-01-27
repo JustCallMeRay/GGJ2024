@@ -44,15 +44,17 @@ def get_success_state(game_uses_wizard, player_input:str):
 
 
 def run_minigame():
-    text = ""
-    keys:list[str] = [key for key in enum.keys()] # urgh
-    game = random_choice(keys)
-    global current_minigame
-    current_minigame = game
-    if not has_wizard_instance:
-        text = get_start_text(enum[game])
-    text += get_minigame_start()
-    wizard.send(text)
+    while True:
+        text = ""
+        keys:list[str] = [key for key in enum.keys()] # urgh
+        game = random_choice(keys)
+        global current_minigame
+        current_minigame = game
+        if not has_wizard_instance:
+            text = get_start_text(enum[game])
+        get_minigame_start()
+        if input("Do you want to play again? Y/N > ") == "n":
+            break
 
 
 
