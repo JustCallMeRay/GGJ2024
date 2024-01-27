@@ -25,8 +25,6 @@ def get_minigame_start():
     if current_minigame == "GUESS_THE_HASH":
         return GuessTheHash.guess_the_hash()
     
-    
-    
     else:
         raise Exception("I did not execpt this to happen")
 
@@ -46,6 +44,8 @@ def run_minigame():
     text = "";
     keys:list[str] = [key for key in enum.keys()] # urgh
     game = random_choice(keys)
+    global current_minigame
+    current_minigame = game
     if not has_wizard_instance:
         text = get_start_text(enum[game]);
     text += get_minigame_start()
