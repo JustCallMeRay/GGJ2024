@@ -22,7 +22,7 @@ def _reponse_after(start_after:str|int, whole:str) -> str:
     start = whole.index(start_after) + len(start_after)
     return whole[start:]
 
-def rate_the_joke_was_success(player_input:str) -> tuple[bool,str]:
+def was_success(player_input:str) -> tuple[bool,str]:
     ai_text = get_rating(player_input)
     if "GOOD" in ai_text:
         return True, _reponse_after("GOOD", ai_text)

@@ -24,14 +24,16 @@ def get_minigame_start():
     else:
         raise Exception("I did not execpt this to happen")
 
-def get_success_no_wizard():
+def _get_success_no_wizard(player_input:str):
     if current_minigame == "RATE_THE_JOKE":
-        return RateThejoke.rate_the_joke()
+        success, response = RateThejoke.was_success(player_input)
     if current_minigame == "GUESS_THE_HASH":
         return GuessTheHash.guess_the_hash()
 
 def get_success_state(game_uses_wizard, player_input:str):
-    ...
+    if not game_uses_wizard:
+        _get_success_no_wizard(player_input)
+
 
 
 def run_minigame():
@@ -42,6 +44,7 @@ def run_minigame():
         text = get_start_text(enum[game]);
     text += get_minigame_start()
     oli.send(text)
+    
     
 
 
