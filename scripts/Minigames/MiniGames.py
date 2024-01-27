@@ -21,8 +21,7 @@ current_minigame:None|str = None
 def get_minigame_start():
     global current_minigame
     if current_minigame == "RATE_THE_JOKE":
-        m = Message()
-        return RateThejoke.go(m)
+        return RateThejoke.go()
     if current_minigame == "GUESS_THE_HASH":
         return GuessTheHash.go()
     
