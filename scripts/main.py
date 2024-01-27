@@ -1,4 +1,6 @@
 from Minigames.MiniGames import run_minigame 
-import OllamaInteractions.Message
 
+
+from TextBasedAventure.TextBasedAdventure import start_adventure
+start_adventure()
 run_minigame()

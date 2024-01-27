@@ -24,8 +24,18 @@ def _is_new_room(ai_response:str):
         return True
     if "[[completed]]" in ai_response.lower():
         return True
-    
+
+def _reponse_before(end:str|int, whole:str) -> str:
+    """I don't know if this will be helpful yet"""
+    if isinstance(end, int):
+        return whole[:end]
+    if end not in whole:
+        return whole
+    start = whole.index(end) + len(end)
+    return whole[:start]
+
 def _clean_string(old:str) -> str:
+    old = _reponse_before("[[COMPLETED]]", old)
     old = old.replace("[[COMPLETED]]", "")
     old = old.replace("[[completed]]", "")
     old = old.replace("[[DIFFICULTY UP]]", "")
@@ -38,14 +48,20 @@ def _get_player_input() -> str:
 def _send_player_input() -> str:
     return text_adventure.send(_get_player_input())
 
-def start_adventure():
-    print(text_adventure.send(get_start_text() + create_room_prompt()))
+def _game_loop() -> None:
     ai_response = _send_player_input()
     while not _is_new_room(ai_response):
         print(_clean_string(ai_response))
         ai_response = _send_player_input()
     print(_clean_string(ai_response))
 
+def start_adventure():
+    print(text_adventure.send(get_start_text() + create_room_prompt()))
+    _game_loop()
+
+def continue_adventure():
+    print(text_adventure.send(create_room_prompt()))
+    _game_loop()
 
 
 

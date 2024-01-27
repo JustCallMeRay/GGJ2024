@@ -18,7 +18,7 @@ def get_rating(player_input:str) -> str:
     # TODO give the input to the AI and get a response
     return ""
 
-def _reponse_after(start_after:str, whole:str) -> str:
+def _reponse_after(start_after:str|int, whole:str) -> str:
     if isinstance(start_after, int):
         return whole[start_after:]
     start = whole.index(start_after) + len(start_after)
