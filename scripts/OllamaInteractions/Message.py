@@ -1,4 +1,8 @@
-import ollama
+try:
+    import ollama
+except ImportError :
+    print("You don't have olama, please go get it!")
+    raise
 
 class Message:
 

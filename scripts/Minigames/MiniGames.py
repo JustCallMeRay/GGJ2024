@@ -1,9 +1,5 @@
 
-# import message class
-from OllamaInteractions.Message import Message
-
-
-
+from ..OllamaInteractions.Message import Message
 from PromptCreation.StartingPrompt import get_start_text
 import PromptHelpers
 from random import choice as random_choice
