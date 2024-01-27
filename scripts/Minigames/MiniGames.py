@@ -1,5 +1,9 @@
 
-import OllamaInteractions.Message as oli
+# import message class
+from OllamaInteractions.Message import Message
+
+
+
 from PromptCreation.StartingPrompt import get_start_text
 import PromptHelpers
 from random import choice as random_choice
@@ -12,6 +16,8 @@ has_wizard_instance:bool = False;
 enum = {"RATE_THE_JOKE":False,"GUESS_THE_HASH":False}
 
 current_minigame:None|str = None
+
+oli = Message.Message()
 
 def get_minigame_start():
     if current_minigame == "RATE_THE_JOKE":

@@ -25,5 +25,11 @@ class Message:
         return self.send(prompt)
 
 if __name__ == "__main__":
-    pass
+    
+    m = Message()
+    m.send("I have an orange")
+
+    m.send("What fruit do I have?")
+
+    print(m.receive())
 
