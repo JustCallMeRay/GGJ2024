@@ -24,6 +24,16 @@ def get_minigame_start():
     else:
         raise Exception("I did not execpt this to happen")
 
+def get_success_no_wizard():
+    if current_minigame == "RATE_THE_JOKE":
+        return RateThejoke.rate_the_joke()
+    if current_minigame == "GUESS_THE_HASH":
+        return GuessTheHash.guess_the_hash()
+
+def get_success_state(game_uses_wizard, player_input:str):
+    ...
+
+
 def run_minigame():
     text = "";
     keys:list[str] = [key for key in enum.keys()] # urgh
@@ -31,6 +41,7 @@ def run_minigame():
     if not has_wizard_instance:
         text = get_start_text(enum[game]);
     text += get_minigame_start()
+    oli.send(text)
     
 
 
