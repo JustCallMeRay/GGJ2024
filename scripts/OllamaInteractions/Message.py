@@ -1,16 +1,24 @@
 import ollama
 
+previous_messages = []
+last_response = ""
+
 def send(prompt:str) -> str:
-    response = ollama.chat(model='phi', messages=[
+    previous_messages.append(
     {
         'role': 'user',
         'content': prompt,
-    },
-    ])
-    return response['message']['content']
+    })
+    response = ollama.chat(model='phi', messages=previous_messages)
+    last_response = response['message']['content']
+    return last_response
 
 def receive() -> str:
-    return ""
+    return last_response
 
-def start(prompt:str) -> None:
-    return
+def start(prompt:str) -> str:
+    return send(prompt)
+
+if __name__ == "__main__":
+    pass
+
