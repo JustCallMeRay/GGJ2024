@@ -1,5 +1,5 @@
 from random import randint
-from OllamaInteractions.Message import Message
+from OllamaInteractions import Message
 
 Hashes = ["GOST",
 "HAS-160",
@@ -57,13 +57,11 @@ def run_guess_the_hash(player_input):
     return _wizard_response(success)
 
 def go():
-    m = Message()
+    m = Message.guess_the_hash
     print(m.sendNoChat(guess_the_hash()))
     success = _guess_the_hash_response(input("Your guess >"))
     print(m.sendNoChat(_wizard_response(success)))
     return success
 
 if __name__ == "__main__":
-    print(guess_the_hash())
-    pi = input()
-    print(run_guess_the_hash(pi))
+    print(go())

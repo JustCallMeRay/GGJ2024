@@ -1,5 +1,6 @@
 
 from typing import Tuple
+from OllamaInteractions import Message
 
 # doesn't use wizard (new AI instance)
 def rate_the_joke():
@@ -43,7 +44,8 @@ def was_success(player_input:str) -> Tuple[bool,str]:
     
     return True, "I don't fully get this joke but I think I like it"
 
-def go(message):
+def go():
+    message = Message.rate_the_joke
     while True:
         print(message.sendNoChat(rate_the_joke()))
         joke = input("Enter joke >")
@@ -58,5 +60,6 @@ def go(message):
         if success:
             break
 
-
+if __name__ == "__main__":
+    print(go())
           

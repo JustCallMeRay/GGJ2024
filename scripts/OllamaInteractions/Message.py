@@ -39,6 +39,7 @@ class Message:
 wizard = Message()
 rate_the_joke = Message()
 text_adventure = Message()
+guess_the_hash = Message()
 
 if __name__ == "__main__":
     
