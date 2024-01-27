@@ -11,13 +11,18 @@ from . import GuessTheHash
 
 has_wizard_instance:bool = False
 
-enum = {"RATE_THE_JOKE":False,"GUESS_THE_HASH":False}
+enum = {
+    "RATE_THE_JOKE":False,
+    #"GUESS_THE_HASH":False
+    }
 
 current_minigame:None|str = None
 
 def get_minigame_start():
+    global current_minigame
     if current_minigame == "RATE_THE_JOKE":
-        return RateThejoke.rate_the_joke()
+        m = Message()
+        return RateThejoke.go(m)
     if current_minigame == "GUESS_THE_HASH":
         return GuessTheHash.guess_the_hash()
     
@@ -25,10 +30,12 @@ def get_minigame_start():
         raise Exception("I did not execpt this to happen")
 
 def _get_success_no_wizard(player_input:str):
+    success =False
     if current_minigame == "RATE_THE_JOKE":
         success, response = RateThejoke.was_success(player_input)
     if current_minigame == "GUESS_THE_HASH":
         return GuessTheHash.guess_the_hash()
+    return success
 
 def get_success_state(game_uses_wizard, player_input:str):
     if not game_uses_wizard:

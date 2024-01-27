@@ -22,6 +22,14 @@ class Message:
         self.last_response = response['message']['content']
         return self.last_response
 
+    def sendNoChat(self, prompt:str) -> str:
+        response = ollama.chat(model='phi', messages=[
+        {
+            'role': 'user',
+            'content': prompt,
+        }])
+        return response['message']['content']
+
     def receive(self) -> str:
         return self.last_response
 
