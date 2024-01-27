@@ -13,7 +13,7 @@ has_wizard_instance:bool = False
 
 enum = {
     "RATE_THE_JOKE":False,
-    #"GUESS_THE_HASH":False
+    "GUESS_THE_HASH":False
     }
 
 current_minigame:None|str = None
@@ -24,7 +24,7 @@ def get_minigame_start():
         m = Message()
         return RateThejoke.go(m)
     if current_minigame == "GUESS_THE_HASH":
-        return GuessTheHash.guess_the_hash()
+        return GuessTheHash.go()
     
     else:
         raise Exception("I did not execpt this to happen")

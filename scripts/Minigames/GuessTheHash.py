@@ -1,4 +1,6 @@
 from random import randint
+from OllamaInteractions.Message import Message
+
 Hashes = ["GOST",
 "HAS-160",
 "HAS",
@@ -29,7 +31,7 @@ Hashes = [ h.lower() for h in Hashes ]
 # doesn't use wizard, all code
 def guess_the_hash():
     number = str(randint(23_4231, 68_3271))
-    return f"Tell the player to guess the hash function used to create the following number {number}"
+    return "Tell the player to guess the hash function used to create the following number {number}"
 
 def _guess_the_hash_response(player_input:str):
     words = player_input.lower().split(" ");
@@ -53,6 +55,13 @@ def run_guess_the_hash(player_input):
     # printed by ollama
     success = _guess_the_hash_response(player_input)
     return _wizard_response(success)
+
+def go():
+    m = Message()
+    print(m.sendNoChat(guess_the_hash()))
+    success = _guess_the_hash_response(input("Your guess >"))
+    print(m.sendNoChat(_wizard_response(success)))
+    return success
 
 if __name__ == "__main__":
     print(guess_the_hash())
