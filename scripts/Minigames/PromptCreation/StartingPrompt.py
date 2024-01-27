@@ -1,5 +1,3 @@
-from random import randint
-
 def get_start_text(game_uses_wizard:bool):
     """This needs to be given a new AI instance and not use the same chat as the TBA"""
     text = "You are a evil wizard that is playing games with a mortal who you feel is below you\n"
