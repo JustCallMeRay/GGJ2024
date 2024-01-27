@@ -1,5 +1,5 @@
 ### Creates the first "start a chat" prompt to the llm
-import scripts.Tags as Tags
+import Tags as Tags
 
 from PromptHelpers import saftey_text
 

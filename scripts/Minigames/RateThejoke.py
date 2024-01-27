@@ -26,7 +26,7 @@ def _reponse_after(start_after:str|int, whole:str) -> str:
     return whole[start:]
 
 def was_success(player_input:str) -> Tuple[bool,str]:
-    ai_text = get_rating(player_input)
+    ai_text = player_input
     if "GOOD" in ai_text:
         return True, _reponse_after("GOOD", ai_text)
     if "BAD" in ai_text:

@@ -1,7 +1,7 @@
 import random
 import Tags
-from PromptCreation.StartingPrompt import get_start_text
-from PromptCreation.NewRoomPrompt import create_room_prompt
+from .PromptCreation.StartingPrompt import get_start_text
+from .PromptCreation.NewRoomPrompt import create_room_prompt
 from OllamaInteractions.Message import Message, text_adventure
 # I am intentionally not using punctuation as it adds tokens (less tokens less time)
 
