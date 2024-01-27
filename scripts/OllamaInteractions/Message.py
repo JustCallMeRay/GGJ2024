@@ -28,6 +28,10 @@ class Message:
     def start(self, prompt:str) -> str:
         return self.send(prompt)
 
+wizard = Message()
+rate_the_joke = Message()
+text_adventure = Message()
+
 if __name__ == "__main__":
     
     m = Message()

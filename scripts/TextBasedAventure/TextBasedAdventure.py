@@ -16,3 +16,6 @@ def _get_max_words(input:float) -> int:
 
 def get_graphics_text():
     return f"Please limit your responses to {_get_max_words(0.5)} words"
+
+if __name__ == "__main__":
+    print(Tags.PLAYER)
