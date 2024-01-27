@@ -9,7 +9,6 @@ def _room_end_tag() -> str:
 def _diffiucltly_text() -> str:
     """This is so the llm understands the difuclty system"""
     text = "If the player wants difficulty change, the first line should be [[DIFFICULTY UP]] or [[DIFFICULTY DOWN]]"
-    text += "Then respond as a wizard"
     return text
 
 def get_start_text() -> str:

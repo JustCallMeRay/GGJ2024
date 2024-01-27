@@ -6,10 +6,10 @@ except ImportError :
 
 class Message:
 
-    previous_messages = []
-    last_response = ""
 
     def __init__(self):
+        self.last_response = ""
+        self.previous_messages = []
         pass
 
     def send(self, prompt:str) -> str:
