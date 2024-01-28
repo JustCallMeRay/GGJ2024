@@ -59,6 +59,8 @@ def _clean_string(old:str) -> str:
     old = sub(r"don't break character", "", old, IGNORECASE)
     old = sub(r"don\\'t break character", "", old, IGNORECASE)
     old = sub(r"<player>.*</player>", "", old, IGNORECASE)
+    # replace word key with word spaghetti
+    old = sub(r"\bkey\b", "spaghetti", old, IGNORECASE)
     return old
 
 def _get_player_input() -> str:
