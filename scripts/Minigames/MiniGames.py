@@ -43,13 +43,15 @@ def get_success_state(game_uses_wizard, player_input:str):
     if not game_uses_wizard:
         _get_success_no_wizard(player_input)
 
-
+game_index:int = 0
 
 def run_minigame():
     while True:
         text = ""
         keys:list[str] = [key for key in enum.keys()] # urgh
-        game = random_choice(keys)
+        global game_index
+        game = keys[game_index]
+        game_index = (game_index + 1) % len(keys)
         global current_minigame
         current_minigame = game
         if not has_wizard_instance:
