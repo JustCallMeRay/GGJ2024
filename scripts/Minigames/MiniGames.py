@@ -9,6 +9,7 @@ from enum import Enum
 from . import RateThejoke
 from . import GuessTheHash
 from . import Punchline
+from InputOutput import ask
 
 has_wizard_instance:bool = False
 
@@ -47,6 +48,7 @@ game_index:int = 0
 
 def run_minigame():
     while True:
+        ask("Continue...")
         text = ""
         keys:list[str] = [key for key in enum.keys()] # urgh
         global game_index
