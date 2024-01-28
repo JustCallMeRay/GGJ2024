@@ -107,9 +107,9 @@ def was_success(ai_text:str) -> Tuple[bool,str]:
 def go():
     message = Message.rate_the_joke
     while True:
-        print_blue(message.sendNoChat(get_start_text(False) + rate_the_joke()))
+        print_blue(_clean_string(message.sendNoChat(get_start_text(False) + rate_the_joke())))
         joke = input("Enter joke >")
-        if len(joke) < 15:
+        if 10 > len(joke):
             response = message.sendNoChat(rate_joke_fail())
         else:
             q = "Act as if you are at an open mic night work event. Always respond with [[GOOD]] or [[BAD]]\
