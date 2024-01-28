@@ -3,6 +3,7 @@ import Tags
 from .PromptCreation.StartingPrompt import get_start_text
 from .PromptCreation.NewRoomPrompt import create_room_prompt
 from OllamaInteractions.Message import Message, text_adventure
+import re
 # I am intentionally not using punctuation as it adds tokens (less tokens less time)
 
 # It should be fine without this but it might stop some cheating
@@ -40,6 +41,7 @@ def _clean_string(old:str) -> str:
     old = old.replace("[[completed]]", "")
     old = old.replace("[[DIFFICULTY UP]]", "")
     old = old.replace("[[DIFFICULTY DOWN]]", "")
+    old = re.sub(r"<player>.*</player>", "", old)
     return old
 
 def _get_player_input() -> str:

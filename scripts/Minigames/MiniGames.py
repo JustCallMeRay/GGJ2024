@@ -18,7 +18,7 @@ enum = {
 
 current_minigame:None|str = None
 
-def get_minigame_start():
+def _run_current_minigame():
     global current_minigame
     if current_minigame == "RATE_THE_JOKE":
         return RateThejoke.go()
@@ -51,9 +51,8 @@ def run_minigame():
         current_minigame = game
         if not has_wizard_instance:
             text = get_start_text(enum[game])
-        get_minigame_start()
-        if input("Do you want to play again? Y/N > ") == "n":
-            break
+        _run_current_minigame()
+        
 
 
 

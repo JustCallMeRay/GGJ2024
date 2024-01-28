@@ -49,9 +49,9 @@ def go():
     while True:
         print(message.sendNoChat(rate_the_joke()))
         joke = input("Enter joke >")
-        q = "You are a human with opionions and a sense of humor. Respond only with the rating\
-        for the following dad joke on a scale of GOOD, MED or BAD as if you were a human\
-        at a work event, your rating should always be the first line of your response then any follow up: \
+        q = "Act as if you are at an open mic night work event. Respond with the rating\
+        for the following dad joke on a scale of GOOD, MED or BAD\
+        your rating should always be the first line of your response then any follow up: \
         <JOKE>" + joke + "</JOKE>"
         response = message.sendNoChat(q)
         print(response)
