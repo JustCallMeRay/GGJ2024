@@ -1,6 +1,8 @@
 from random import randint
 from OllamaInteractions import Message
-from PromptCreation.StartingPrompt import get_start_text
+from .PromptCreation.StartingPrompt import get_start_text
+from InputOutput import print_blue, print_green, print_red
+
 Hashes = ["GOST",
 "HAS-160",
 "HAS",
@@ -58,9 +60,12 @@ def run_guess_the_hash(player_input):
 
 def go():
     m = Message.guess_the_hash
-    print(m.sendNoChat(get_start_text(False) + guess_the_hash()))
+    print_blue(m.sendNoChat(get_start_text(False) + guess_the_hash()))
     success = _guess_the_hash_response(input("Your guess >"))
-    print(m.sendNoChat(_wizard_response(success)))
+    if success:
+        print_green(m.sendNoChat(_wizard_response(success)))
+    else:
+        print_red(m.sendNoChat(_wizard_response(success)))
     return success
 
 if __name__ == "__main__":

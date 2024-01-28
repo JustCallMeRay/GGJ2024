@@ -2,7 +2,7 @@
 from typing import Tuple
 from OllamaInteractions import Message
 from InputOutput import print_blue, print_green, print_red, ask
-from PromptCreation.StartingPrompt import get_start_text
+from .PromptCreation.StartingPrompt import get_start_text
 
 # doesn't use wizard (new AI instance)
 def rate_the_joke():

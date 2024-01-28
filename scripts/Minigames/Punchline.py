@@ -3,7 +3,7 @@
 from InputOutput import print_blue, print_green, print_red, ask
 import random
 import OllamaInteractions.Message as Message
-from PromptCreation.StartingPrompt import get_start_text
+from .PromptCreation.StartingPrompt import get_start_text
 
 def get_joke() -> tuple[str,str]:
 
@@ -30,7 +30,7 @@ def go():
             punchlineFirst40Words = " ".join(punchline.split(" ")[:25]).replace("\n", "")
             print_blue(f"{j+1}: {punchlineFirst40Words}")
     answer = ask("Which is the real punchline? 1 - 4 >")
-    if int(answer) == i + 1:
+    if answer == (str)(i + 1):
         print_green("You guessed correctly!")
         return True
     else:
