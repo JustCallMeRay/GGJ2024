@@ -2,6 +2,7 @@
 from typing import Tuple
 from OllamaInteractions import Message
 from InputOutput import print_blue, print_green, print_red, ask
+from PromptCreation.StartingPrompt import get_start_text
 
 # doesn't use wizard (new AI instance)
 def rate_the_joke():
@@ -48,7 +49,7 @@ def was_success(player_input:str) -> Tuple[bool,str]:
 def go():
     message = Message.rate_the_joke
     while True:
-        print_blue(message.sendNoChat(rate_the_joke()))
+        print_blue(message.sendNoChat(get_start_text(False) + rate_the_joke()))
         joke = input("Enter joke >")
         q = "Act as if you are at an open mic night work event. Respond with \
         the quality of the joke on a scale of GOOD, MED or BAD\

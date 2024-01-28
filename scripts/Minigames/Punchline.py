@@ -3,6 +3,7 @@
 from InputOutput import print_blue, print_green, print_red, ask
 import random
 import OllamaInteractions.Message as Message
+from PromptCreation.StartingPrompt import get_start_text
 
 def get_joke() -> tuple[str,str]:
 
@@ -25,7 +26,7 @@ def go():
         if j == i:
             print_blue(f"{j+1}: {joke[1]}")
         else:
-            punchline = m.sendNoChat("You are a funny guy. Guess the punchline to this joke, give the punchline only: " + joke[0], "system")
+            punchline = m.sendNoChat(get_start_text(False) + "You are a funny guy. Guess the punchline to this joke, give the punchline only: " + joke[0], "system")
             punchlineFirst40Words = " ".join(punchline.split(" ")[:25]).replace("\n", "")
             print_blue(f"{j+1}: {punchlineFirst40Words}")
     answer = ask("Which is the real punchline? 1 - 4 >")
@@ -33,7 +34,7 @@ def go():
         print_green("You guessed correctly!")
         return True
     else:
-        print_red("Wrong!")
+        print_red(m.sendNoChat(get_start_text(False) + "The player got the answer wrong and you are upset with them"))
         return False
 
 if __name__ == "__main__":
