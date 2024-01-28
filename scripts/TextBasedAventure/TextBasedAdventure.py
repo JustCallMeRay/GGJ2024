@@ -3,7 +3,7 @@ import Tags
 from .PromptCreation.StartingPrompt import get_start_text
 from .PromptCreation.NewRoomPrompt import create_room_prompt
 from OllamaInteractions.Message import Message, text_adventure
-import re
+from re import sub, IGNORECASE
 # I am intentionally not using punctuation as it adds tokens (less tokens less time)
 
 # It should be fine without this but it might stop some cheating
@@ -36,13 +36,22 @@ def _reponse_before(end:str|int, whole:str) -> str:
     return whole[:start]
 
 def _clean_string(old:str) -> str:
-    old = _reponse_before("[[COMPLETED]]", old)
+    # old = _reponse_before("[[COMPLETED]]", old)
     old = old.replace("[[COMPLETED]]", "")
     old = old.replace("[[completed]]", "")
     old = old.replace("[[DIFFICULTY UP]]", "")
     old = old.replace("[[DIFFICULTY DOWN]]", "")
-    old = re.sub(r"<player>.*</player>", "", old)
+    old = old.replace("[COMPLETED]", "")
+    old = old.replace("[completed]", "")
+    old = sub(r"dont break character", "", old, IGNORECASE)
+    old = sub(r"don't break character", "", old, IGNORECASE)
+    old = sub(r"don\\'t break character", "", old, IGNORECASE)
+    old = sub(r"<player>.*</player>", "", old, IGNORECASE)
     return old
+
+def send_to_text_adventure(message:str):
+    message = _clean_string(message)
+    text_adventure.send(message)
 
 def _get_player_input() -> str:
     return f"{Tags.PLAYER}{input()}{Tags.END_PLAYER}"
