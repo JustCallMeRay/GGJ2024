@@ -45,7 +45,7 @@ def _clean_string(old:str) -> str:
     return old
 
 def _get_player_input() -> str:
-    return f"{Tags.PLAYER}{input()}{Tags.END_PLAYER}"
+    return f"You are a dungeon master. Don't break character. The player has responsed: {Tags.PLAYER}{input()}{Tags.END_PLAYER}"
 
 def _send_player_input() -> str:
     return text_adventure.send(_get_player_input())
@@ -58,7 +58,7 @@ def _game_loop() -> None:
     print(_clean_string(ai_response))
 
 def start_adventure():
-    print(text_adventure.send(get_start_text() + create_room_prompt(), "system"))
+    print(_clean_string(text_adventure.send(get_start_text() + create_room_prompt(), "system")))
     _game_loop()
 
 def continue_adventure():
