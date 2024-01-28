@@ -30,37 +30,53 @@ def _reponse_after(start_after:str|int, whole:str) -> str:
 _good_variations = ["GOOD", "MED", "not bad"]
 _bad_variations = ["BAD", "NOT GOOD"]
 
+def _confident_in(word, ai_text) -> Tuple[bool, str]:
+    if f"[[{word}]]" in ai_text:
+        return True, _reponse_after(f"[[{word}]]", ai_text)
+    if f"[{word}]" in ai_text:
+        return True, _reponse_after(f"[{word}]", ai_text)
+    return False, ""
+
+def _uncondifent_in(word, ai_text) -> Tuple[bool, str]:
+    if f"[[{word}]]".lower() in ai_text.lower():
+        return True, _reponse_after(f"[[{word}]]", ai_text.lower())
+    if f"[{word}]".lower() in ai_text.lower():
+        return True, _reponse_after(f"[{word}]", ai_text.lower())
+    return False, ""
+
+def _very_unconfident_in(word, ai_text) -> Tuple[bool, str]:
+    if word in ai_text:
+        return True, _reponse_after(word, ai_text)
+    if word.lower() in ai_text.lower():
+        return True, _reponse_after(word.lower(), ai_text.lower())
+    return False, ""
 
 
 def was_success(ai_text:str) -> Tuple[bool,str]:
     for word in _good_variations:
-        if f"[[{word}]]" in ai_text:
-            return True, _reponse_after(f"[[{word}]]", ai_text)
-        if f"[{word}]" in ai_text:
-            return True, _reponse_after(f"[{word}]", ai_text)
-        if f"[[{word}]]".lower() in ai_text.lower():
-            return True, _reponse_after(f"[[{word}]]", ai_text.lower())
-        if f"[{word}]".lower() in ai_text.lower():
-            return True, _reponse_after(f"[{word}]", ai_text.lower())
+        success, string = _confident_in(word, ai_text)
+        if success:
+            return success, string
     for word in _bad_variations:
-        if 
-
-
-    if "GOOD" in ai_text:
-        return True, _reponse_after("GOOD", ai_text)
-    if "BAD" in ai_text:
-        return False, _reponse_after("BAD", ai_text)
-    if "MED" in ai_text:
-        return True, _reponse_after("MED", ai_text)
-    
-
-    # ai_text = ai_text.lower()
-    if "good" in ai_text:
-        return True, _reponse_after(ai_text.index("good"), ai_text)
-    if "bad" in ai_text:
-        return False, _reponse_after(ai_text.index("bad"), ai_text)
-    if " med " in ai_text:
-        return True, _reponse_after(ai_text.index("med"), ai_text)
+        success, string = _confident_in(word, ai_text)
+        if success:
+            return False, string
+    for word in _good_variations:
+        success, string = _uncondifent_in(word, ai_text)
+        if success:
+            return success, string
+    for word in _bad_variations:
+        success, string = _uncondifent_in(word, ai_text)
+        if success:
+            return False, string
+    for word in _bad_variations:
+        success, string = _very_unconfident_in(word, ai_text)
+        if success:
+            return False, string
+    for word in _good_variations:
+        success, string = _very_unconfident_in(word, ai_text)
+        if success:
+            return success, string
     
     return True, "I don't fully get this joke but I think I like it"
 
