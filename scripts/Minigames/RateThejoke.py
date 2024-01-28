@@ -4,6 +4,7 @@ from OllamaInteractions import Message
 from InputOutput import print_blue, print_green, print_red, ask
 from .PromptCreation.StartingPrompt import get_start_text
 from random import choice
+
 _wizard_names = ["Magnus Carlson", "Clembrior Smith", "Stagasgore Cook", "Lord of Destruction", "Skeletor" ]
 
 _mortal_adjectives = ["foolish", "unworthy", "powerless", "", "feeble", "pathetic", "puny", "pitiful", "insignificant", "inadequate", "weak" ]

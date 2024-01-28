@@ -69,13 +69,22 @@ def _get_player_input() -> str:
 def _send_player_input() -> str:
     return text_adventure.send(_get_player_input())
 
+_failed_responses = [
+    "The player has failed. Respond with an unfortunate fate for the player", 
+    "The player has been interupted by an evil wizard, tell them hopes look bleek",
+    "A dragon has entered the dungeon, tell the player that they have ran away",
+    "A trapdoor has opened beneath the player and they fall, tell them the bad news", 
+    "The player has pooed them selves and runs away in shame",
+    "The player has left the oven on so had to run home! the find a wizard on the way out"
+    ]
+
 def _game_loop() -> None:
     ai_response = _send_player_input()
     attempt = 3
     while not _is_new_room(ai_response):
         print_blue(_clean_string(ai_response))
         if attempt < 0:
-            print_red(text_adventure.send("The player has failed. Respond with an unfortunate fate for the player", "system")) 
+            print_red(text_adventure.send(random.choice(_failed_responses), "system")) 
             return
         ai_response = _send_player_input() 
         attempt -= 1
