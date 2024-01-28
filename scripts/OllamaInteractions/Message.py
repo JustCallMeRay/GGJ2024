@@ -37,14 +37,14 @@ class Message:
             'role': role,
             'content': prompt,
         })
-        if __debug__:
-            print("\033[92m Sent: ")
-            pprint.pprint(self.previous_messages)
+        # if __debug__:
+        #     print("\033[92m Sent: ")
+        #     pprint.pprint(self.previous_messages)
         response = self.sendToLlm(self.previous_messages)
-        if __debug__:
-            print("\033[96m Received: ")
-            pprint.pprint(response)
-            print("\033[0m")
+        # if __debug__:
+        #     print("\033[96m Received: ")
+        #     pprint.pprint(response)
+        #     print("\033[0m")
         self.previous_messages.append(response['message'])
         self.last_response = response['message']['content']
         return self.last_response
