@@ -16,7 +16,9 @@ class Message:
     def sendToLlm(self, messages):
         retries = 10 # retry if we don't get a response
         while True:
-            response = ollama.chat(model='phi', messages=messages)
+            # print("trying")
+            response = ollama.chat(model='dolphin-phi', messages=messages)
+            pprint.pprint(response)
             retries -= 1
             if retries < 0 or response['message']['content'] != "":
                 break
