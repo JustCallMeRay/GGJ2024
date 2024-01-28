@@ -3,7 +3,7 @@ from random import choice as random_choice
 from random import random as random_float
 
 # list of nouns all should be funny
-_nouns_funny = ["beans", "eggs", "a cat", "alphabetty spagetti", "an elephant (never mentioned)"]
+_nouns_funny = ["beans", "a lake of beans", "eggs", "a cat", "alphabetty spagetti", "an elephant (never mentioned)"]
 
 _nouns_quest = ["key", "bookshelf", "cat treats"]
 
