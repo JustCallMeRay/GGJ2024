@@ -9,6 +9,10 @@
 
 - response is funny
 
+- try catch to see if ollama is running
+- if not revert to local host
+- 
+
 ## Minigames
 minigames are run by an evil wizard who decides you fate
 
