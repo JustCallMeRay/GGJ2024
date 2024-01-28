@@ -8,10 +8,14 @@ import pprint
 class Message:
 
 
-    def __init__(self):
+    def __init__(self, llm_name:str|None = None):
         self.last_response = ""
         self.previous_messages = []
-        pass
+        if llm_name is None:
+            self.llm_name = "dolphin-phi"
+        else :
+            self.llm_name = llm_name
+        
 
     def sendToLlm(self, messages):
         retries = 10 # retry if we don't get a response
@@ -61,7 +65,7 @@ class Message:
         return self.send(prompt)
 
 wizard = Message()
-rate_the_joke = Message()
+rate_the_joke = Message("phi")
 text_adventure = Message()
 guess_the_hash = Message()
 punchline = Message()
