@@ -65,7 +65,7 @@ _mortal_adjectives = ["foolish", "unworthy", "powerless", "", "feeble", "patheti
 
 _mortal_nouns = ["mortal", "human"]
 
-_start_words = ["Ah!,", ""]
+_start_words = ["Ah!,", "Ahah", "We meet again", "" ]
 
 _output_text = [f"""You are jumped by an evil wizard: {choice(_start_words)} {choice(_mortal_adjectives).capitalize()} {choice(_mortal_nouns)}! Welcome to my realm, where I, {choice(_wizard_names)} , shall challenge your {choice(_mortal_adjectives)} intellect with a game I call "Guess The Hash!" Prepare yourself for the ultimate test of cryptographic prowess. I shall present you with a hash output, and you, {choice(_mortal_adjectives)} {choice(_mortal_nouns)}, must grope in the darkness of your {choice(_mortal_adjectives)} knowledge to identify the algorithm that created it.
 Let the game commence, and may your {choice(_mortal_adjectives) } attempts amuse me! Here is your first challenge:
@@ -75,13 +75,17 @@ f"""
 
 def go():
     m = Message.guess_the_hash
-    print_blue(m.sendNoChat(get_start_text(False) + guess_the_hash()))
+    send_text = choice(_output_text)
+    print_blue(send_text)
+    m.previous_messages.append({'content': send_text, "role":"user"})
     success = _guess_the_hash_response(input("Your guess >"))
     if success:
         print_green(m.sendNoChat(_wizard_response(success)))
     else:
         print_red(m.sendNoChat(_wizard_response(success)))
+    m.previous_messages = []
     return success
+
 
 if __name__ == "__main__":
     print(go())
