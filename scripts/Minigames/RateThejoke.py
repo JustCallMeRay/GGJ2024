@@ -1,6 +1,7 @@
 
 from typing import Tuple
 from OllamaInteractions import Message
+from InputOutput import print_blue, print_green, print_red, ask
 
 # doesn't use wizard (new AI instance)
 def rate_the_joke():
@@ -34,12 +35,12 @@ def was_success(player_input:str) -> Tuple[bool,str]:
     if "MED" in ai_text:
         return True, _reponse_after("MED", ai_text)
 
-    lower = ai_text.lower()
-    if "good" in lower:
+    # ai_text = ai_text.lower()
+    if "good" in ai_text:
         return True, _reponse_after(ai_text.index("good"), ai_text)
-    if "bad" in lower:
+    if "bad" in ai_text:
         return False, _reponse_after(ai_text.index("bad"), ai_text)
-    if "med" in lower:
+    if "med" in ai_text:
         return True, _reponse_after(ai_text.index("med"), ai_text)
     
     return True, "I don't fully get this joke but I think I like it"
@@ -47,18 +48,20 @@ def was_success(player_input:str) -> Tuple[bool,str]:
 def go():
     message = Message.rate_the_joke
     while True:
-        print(message.sendNoChat(rate_the_joke()))
+        print_blue(message.sendNoChat(rate_the_joke()))
         joke = input("Enter joke >")
-        q = "Act as if you are at an open mic night work event. Respond with the rating\
-        for the following dad joke on a scale of GOOD, MED or BAD\
+        q = "Act as if you are at an open mic night work event. Respond with \
+        the quality of the joke on a scale of GOOD, MED or BAD\
         your rating should always be the first line of your response then any follow up: \
         <JOKE>" + joke + "</JOKE>"
         response = message.sendNoChat(q)
-        print(response)
+        print_blue(response)
         success, msg = was_success(response)
-        print(msg)
         if success:
+            print_green(msg)
             break
+        else:
+            print_red(msg)
 
 if __name__ == "__main__":
     print(go())
