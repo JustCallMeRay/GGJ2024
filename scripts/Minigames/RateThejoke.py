@@ -29,6 +29,8 @@ def _reponse_after(start_after:str|int, whole:str) -> str:
 
 def was_success(player_input:str) -> Tuple[bool,str]:
     ai_text = player_input
+    if "not bad" in ai_text:
+        return True, _reponse_after("not bad", ai_text)
     if "GOOD" in ai_text:
         return True, _reponse_after("GOOD", ai_text)
     if "BAD" in ai_text:
@@ -41,7 +43,7 @@ def was_success(player_input:str) -> Tuple[bool,str]:
         return True, _reponse_after(ai_text.index("good"), ai_text)
     if "bad" in ai_text:
         return False, _reponse_after(ai_text.index("bad"), ai_text)
-    if "med" in ai_text:
+    if " med " in ai_text:
         return True, _reponse_after(ai_text.index("med"), ai_text)
     
     return True, "I don't fully get this joke but I think I like it"
