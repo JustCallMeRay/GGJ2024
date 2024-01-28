@@ -30,7 +30,7 @@ def go():
             punchlineFirst40Words = " ".join(punchline.split(" ")[:25]).replace("\n", "")
             print_blue(f"{j+1}: {punchlineFirst40Words}")
     answer = ask("Which is the real punchline? 1 - 4 >")
-    if int(answer) == i + 1:
+    if answer == (str)(i + 1):
         print_green("You guessed correctly!")
         return True
     else:
