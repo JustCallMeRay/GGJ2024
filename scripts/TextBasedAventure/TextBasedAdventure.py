@@ -20,11 +20,13 @@ def _get_max_words(input:float) -> int:
 def get_graphics_text():
     return f"Please limit your responses to {_get_max_words(0.5)} words"
 
+_completed_text = ["[[COMPLETED]]", "[[completed]]", "[COMPLETED]","[completed]", "[SUCCESS]" ]
+
 def _is_new_room(ai_response:str):
-    if "[[COMPLETED]]" in ai_response:
-        return True
-    if "[[completed]]" in ai_response.lower():
-        return True
+    for word in _completed_text:
+        if word in ai_response:
+            return True
+    return False
 
 def _reponse_before(end:str|int, whole:str) -> str:
     """I don't know if this will be helpful yet"""
@@ -35,23 +37,28 @@ def _reponse_before(end:str|int, whole:str) -> str:
     start = whole.index(end) + len(end)
     return whole[:start]
 
+_diffiucltly_messages = ["[[DIFFICULTY UP]]",
+                         "[[DIFFICULTY UP]]".lower(),
+                         "[DIFFICULTY UP]",
+                         "[DIFFICULTY UP]".lower(),
+                         "[[DIFFICULTY DOWN]]",
+                         "[[DIFFICULTY DOWN]]".lower(),
+                         "[DIFFICULTY DOWN]",
+                         "[DIFFICULTY DOWN]".lower()
+                             ]
+
 def _clean_string(old:str) -> str:
     # old = _reponse_before("[[COMPLETED]]", old)
-    old = old.replace("[[COMPLETED]]", "")
-    old = old.replace("[[completed]]", "")
-    old = old.replace("[[DIFFICULTY UP]]", "")
-    old = old.replace("[[DIFFICULTY DOWN]]", "")
-    old = old.replace("[COMPLETED]", "")
-    old = old.replace("[completed]", "")
+    for word in _completed_text:
+        old = old.replace(word , "")
+    for word in _diffiucltly_messages:
+        old = old.replace(word, "")
+
     old = sub(r"dont break character", "", old, IGNORECASE)
     old = sub(r"don't break character", "", old, IGNORECASE)
     old = sub(r"don\\'t break character", "", old, IGNORECASE)
     old = sub(r"<player>.*</player>", "", old, IGNORECASE)
     return old
-
-def send_to_text_adventure(message:str):
-    message = _clean_string(message)
-    text_adventure.send(message)
 
 def _get_player_input() -> str:
     return f"You are a dungeon master. Don't break character. The player has responsed: {Tags.PLAYER}{input()}{Tags.END_PLAYER}"
