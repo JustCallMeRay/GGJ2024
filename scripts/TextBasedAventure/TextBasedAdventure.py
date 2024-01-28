@@ -71,20 +71,20 @@ def _game_loop() -> None:
     ai_response = _send_player_input()
     attempt = 3
     while not _is_new_room(ai_response):
-        print(_clean_string(ai_response))
+        print_blue(_clean_string(ai_response))
         if attempt < 0:
             print_red("You fall down a hole") 
             return
         ai_response = _send_player_input() 
         attempt -= 1
-    print(_clean_string(ai_response))
+    print_green(_clean_string(ai_response))
 
 def start_adventure():
-    print(_clean_string(text_adventure.send(get_start_text() + create_room_prompt(), "system")))
+    print_blue(_clean_string(text_adventure.send(get_start_text() + create_room_prompt(), "system")))
     _game_loop()
 
 def continue_adventure():
-    print(text_adventure.send(create_room_prompt(), "user"))
+    print_blue(text_adventure.send(create_room_prompt(), "user"))
     _game_loop()
 
 
