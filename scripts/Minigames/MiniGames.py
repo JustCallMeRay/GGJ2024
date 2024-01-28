@@ -8,12 +8,14 @@ from random import choice as random_choice
 from enum import Enum
 from . import RateThejoke
 from . import GuessTheHash
+from . import Punchline
 
 has_wizard_instance:bool = False
 
 enum = {
     "RATE_THE_JOKE":False,
-    "GUESS_THE_HASH":False
+    "GUESS_THE_HASH":False,
+    "PUNCHLINE":False
     }
 
 current_minigame:None|str = None
@@ -24,7 +26,8 @@ def _run_current_minigame():
         return RateThejoke.go()
     if current_minigame == "GUESS_THE_HASH":
         return GuessTheHash.go()
-    
+    if current_minigame == "PUNCHLINE":
+        return Punchline.go()
     else:
         raise Exception("I did not execpt this to happen")
 

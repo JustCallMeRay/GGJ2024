@@ -15,5 +15,5 @@ def get_start_text() -> str:
     """This happens once at the start of the game"""
     # TODO edit and expand
     start = "You are simulating a text based adventure..."
-    return "\n".join([start, _room_end_tag(), saftey_text(), _diffiucltly_text()])
+    return "\n".join([start, _room_end_tag(), saftey_text()])
 
