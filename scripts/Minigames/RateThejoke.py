@@ -4,23 +4,27 @@ from OllamaInteractions import Message
 from InputOutput import print_blue, print_green, print_red, ask
 from .PromptCreation.StartingPrompt import get_start_text
 from random import choice
-_wizard_names = ["Magnus Carlson", "Clembrior Smith", "Stagasgore Cook" ]
+_wizard_names = ["Magnus Carlson", "Clembrior Smith", "Stagasgore Cook", "Lord of Destruction", "Skeletor" ]
 
-_mortal_adjectives = ["foolish", "unworthy", "powerless", "", "feeble", "pathetic", "puny", "pitiful", "insignificant", "inadequate" ]
+_mortal_adjectives = ["foolish", "unworthy", "powerless", "", "feeble", "pathetic", "puny", "pitiful", "insignificant", "inadequate", "weak" ]
 
-_mortal_nouns = ["mortal", "human"]
+_mortal_nouns = ["mortal", "human", "one"]
 
 _start_words = ["Ah!,", "Ahah", "We meet again", "", "Hmph!" ]
 
 _bad_joke_reponses = [f"""{choice(_start_words)}, {choice(_mortal_adjectives) } {choice(_mortal_nouns)}! Your attempt at humor is as laughable as your {choice(_mortal_nouns)} existence. I, {choice(_wizard_names)}, find your joke to be as dull as a rusted blade in my arsenal. Your words lack the wit and brilliance befitting a mastermind such as myself. Your {choice(_mortal_adjectives)} attempts at amusement are like a candle flickering in the vast darkness of my superior intellect.
 
-Try harder, if you dare, to amuse the Lord of Destruction with a joke worthy of eliciting even the faintest smirk. Until then, revel in the realization of your inadequacy in the presence of {choice(_wizard_names)}!""", f"""{choice(_start_words)}, {choice(_mortal_adjectives) } {choice(_mortal_nouns)} Your attempt at humor is as {choice(_mortal_nouns)} as your understanding of cryptographic complexities, {choice(_mortal_nouns)}. I find your joke lacking in wit and utterly beneath the standards of {choice(_wizard_names)} refined taste. Perhaps you should focus less on jesting and more on honing your {choice(_mortal_adjectives)} intellect to stand a chance in the challenges that lie ahead. Your jests are as weak as your grasp on reality, {choice(_mortal_nouns)}!""",
+Try harder, if you dare, to amuse the Lord of Destruction with a joke worthy of eliciting even the faintest smirk. Until then, revel in the realization of your inadequacy in the presence of {choice(_wizard_names)}!""", f"""{choice(_start_words)}, {choice(_mortal_adjectives) } {choice(_mortal_nouns)} Your attempt at humor is as {choice(_mortal_nouns)} as your understanding of cryptographic complexities, {choice(_mortal_nouns)}. I find your joke lacking in wit and utterly beneath the standards of {choice(_wizard_names)} refined taste. Perhaps you should focus less on jesting and more on honing your {choice(_mortal_adjectives)} intellect to stand a chance in the challenges that lie ahead. Your jests are as {choice(_mortal_adjectives)} as your grasp on reality, {choice(_mortal_nouns)}!""",
 "Tell the player why their joke was bad and that they will not be let through to the next room"]
 
 
+_start_examples = (
+    f"""{choice(_start_words)}, {choice(_mortal_adjectives) } {choice(_mortal_nouns)}! Prepare your {choice(_mortal_adjectives)} self for the rare opportunity to amuse the mighty {choice(_wizard_names)} with your {choice(_mortal_adjectives)} attempts at humor. Speak, {choice(_mortal_adjectives) } {choice(_mortal_nouns)}! Tell me a joke, and let us see if you possess the power to elicit a laugh from the {choice(_wizard_names)}!""", 
+    f"""{choice(_start_words)}, {choice(_mortal_adjectives) } {choice(_mortal_nouns)}! Entertain me with your {choice(_mortal_adjectives)} attempts at humor! Speak, and let me hear a joke that might actually amuse me. Though I highly doubt you possess the wit to make {choice(_wizard_names)} laugh!"""
+)
 # doesn't use wizard (new AI instance)
 def rate_the_joke():
-    return "Ask the player to tell you a joke, if it is funny enough you will let them through"
+    return f"Ask the player to tell you a joke, if it is funny enough you will let them through.\nHere is an example {choice(_start_examples)}"
 
 def rate_the_joke_success():
     return "The player's joke was funny and you let them through to the next room"
