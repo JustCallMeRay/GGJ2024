@@ -4,6 +4,7 @@ from .PromptCreation.StartingPrompt import get_start_text
 from .PromptCreation.NewRoomPrompt import create_room_prompt
 from OllamaInteractions.Message import Message, text_adventure
 from re import sub, IGNORECASE
+from InputOutput import print_blue, print_green, print_red, ask
 # I am intentionally not using punctuation as it adds tokens (less tokens less time)
 
 # It should be fine without this but it might stop some cheating
@@ -58,6 +59,8 @@ def _clean_string(old:str) -> str:
     old = sub(r"don't break character", "", old, IGNORECASE)
     old = sub(r"don\\'t break character", "", old, IGNORECASE)
     old = sub(r"<player>.*</player>", "", old, IGNORECASE)
+    # replace word key with word spaghetti
+    old = sub(r"\bkey\b", "spaghetti", old, IGNORECASE)
     return old
 
 def _get_player_input() -> str:
@@ -68,17 +71,22 @@ def _send_player_input() -> str:
 
 def _game_loop() -> None:
     ai_response = _send_player_input()
+    attempt = 3
     while not _is_new_room(ai_response):
-        print(_clean_string(ai_response))
-        ai_response = _send_player_input()
-    print(_clean_string(ai_response))
+        print_blue(_clean_string(ai_response))
+        if attempt < 0:
+            print_red("You fall down a hole") 
+            return
+        ai_response = _send_player_input() 
+        attempt -= 1
+    print_green(_clean_string(ai_response))
 
 def start_adventure():
-    print(_clean_string(text_adventure.send(get_start_text() + create_room_prompt(), "system")))
+    print_blue(_clean_string(text_adventure.send(get_start_text() + create_room_prompt(), "system")))
     _game_loop()
 
 def continue_adventure():
-    print(text_adventure.send(create_room_prompt(), "user"))
+    print_blue(text_adventure.send(create_room_prompt(), "user"))
     _game_loop()
 
 
