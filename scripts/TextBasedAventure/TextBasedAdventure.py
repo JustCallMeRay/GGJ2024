@@ -4,6 +4,7 @@ from .PromptCreation.StartingPrompt import get_start_text
 from .PromptCreation.NewRoomPrompt import create_room_prompt
 from OllamaInteractions.Message import Message, text_adventure
 from re import sub, IGNORECASE
+from InputOutput import print_blue, print_green, print_red, ask
 # I am intentionally not using punctuation as it adds tokens (less tokens less time)
 
 # It should be fine without this but it might stop some cheating
@@ -68,9 +69,14 @@ def _send_player_input() -> str:
 
 def _game_loop() -> None:
     ai_response = _send_player_input()
+    attempt = 3
     while not _is_new_room(ai_response):
         print(_clean_string(ai_response))
-        ai_response = _send_player_input()
+        if attempt < 0:
+            print_red("You fall down a hole") 
+            return
+        ai_response = _send_player_input() 
+        attempt -= 1
     print(_clean_string(ai_response))
 
 def start_adventure():
