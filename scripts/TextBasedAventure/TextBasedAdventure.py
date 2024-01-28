@@ -75,7 +75,7 @@ def _game_loop() -> None:
     while not _is_new_room(ai_response):
         print_blue(_clean_string(ai_response))
         if attempt < 0:
-            print_red("You fall down a hole") 
+            print_red(text_adventure.send("The player has failed. Respond with an unfortunate fate for the player", "system")) 
             return
         ai_response = _send_player_input() 
         attempt -= 1
