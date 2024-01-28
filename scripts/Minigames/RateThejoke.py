@@ -115,7 +115,6 @@ def go():
             q = "Act as if you are at an open mic night work event. Always respond with [[GOOD]] or [[BAD]]\
             your rating should always be the first line of your response then any follow up:" + joke
             response = message.sendNoChat(q)
-        print_blue(response)
         success, msg = was_success(response)
         if success:
             print_green(_clean_string(msg))
@@ -125,4 +124,3 @@ def go():
 
 if __name__ == "__main__":
     print(go())
-          
