@@ -27,16 +27,32 @@ def _reponse_after(start_after:str|int, whole:str) -> str:
     start = whole.index(start_after) + len(start_after)
     return whole[start:]
 
-def was_success(player_input:str) -> Tuple[bool,str]:
-    ai_text = player_input
-    if "not bad" in ai_text:
-        return True, _reponse_after("not bad", ai_text)
+_good_variations = ["GOOD", "MED", "not bad"]
+_bad_variations = ["BAD", "NOT GOOD"]
+
+
+
+def was_success(ai_text:str) -> Tuple[bool,str]:
+    for word in _good_variations:
+        if f"[[{word}]]" in ai_text:
+            return True, _reponse_after(f"[[{word}]]", ai_text)
+        if f"[{word}]" in ai_text:
+            return True, _reponse_after(f"[{word}]", ai_text)
+        if f"[[{word}]]".lower() in ai_text.lower():
+            return True, _reponse_after(f"[[{word}]]", ai_text.lower())
+        if f"[{word}]".lower() in ai_text.lower():
+            return True, _reponse_after(f"[{word}]", ai_text.lower())
+    for word in _bad_variations:
+        if 
+
+
     if "GOOD" in ai_text:
         return True, _reponse_after("GOOD", ai_text)
     if "BAD" in ai_text:
         return False, _reponse_after("BAD", ai_text)
     if "MED" in ai_text:
         return True, _reponse_after("MED", ai_text)
+    
 
     # ai_text = ai_text.lower()
     if "good" in ai_text:
@@ -53,10 +69,8 @@ def go():
     while True:
         print_blue(message.sendNoChat(get_start_text(False) + rate_the_joke()))
         joke = input("Enter joke >")
-        q = "Act as if you are at an open mic night work event. Respond with \
-        the quality of the joke on a scale of GOOD, MED or BAD\
-        your rating should always be the first line of your response then any follow up: \
-        <JOKE>" + joke + "</JOKE>"
+        q = "Act as if you are at an open mic night work event. Always respond with [[GOOD]] or [[BAD]]\
+        your rating should always be the first line of your response then any follow up:" + joke
         response = message.sendNoChat(q)
         print_blue(response)
         success, msg = was_success(response)
