@@ -3,7 +3,7 @@
 from InputOutput import print_blue, print_green, print_red, ask
 import random
 import OllamaInteractions.Message as Message
-from PromptCreation.StartingPrompt import get_start_text
+from .PromptCreation.StartingPrompt import get_start_text
 
 def get_joke() -> tuple[str,str]:
 
