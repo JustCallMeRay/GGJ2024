@@ -18,7 +18,7 @@ class Message:
         while True:
             # print("trying")
             response = ollama.chat(model='dolphin-phi', messages=messages)
-            pprint.pprint(response)
+            # pprint.pprint(response)
             retries -= 1
             if retries < 0 or response['message']['content'] != "":
                 break
@@ -33,12 +33,14 @@ class Message:
             'role': role,
             'content': prompt,
         })
-        print("\033[92m Sent: ")
-        pprint.pprint(self.previous_messages)
+        if __debug__:
+            print("\033[92m Sent: ")
+            pprint.pprint(self.previous_messages)
         response = self.sendToLlm(self.previous_messages)
-        print("\033[96m Received: ")
-        pprint.pprint(response)
-        print("\033[0m")
+        if __debug__:
+            print("\033[96m Received: ")
+            pprint.pprint(response)
+            print("\033[0m")
         self.previous_messages.append(response['message'])
         self.last_response = response['message']['content']
         return self.last_response

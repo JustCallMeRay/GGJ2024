@@ -62,7 +62,7 @@ def start_adventure():
     _game_loop()
 
 def continue_adventure():
-    print(text_adventure.send(create_room_prompt(), "system"))
+    print(text_adventure.send(create_room_prompt(), "user"))
     _game_loop()
 
 
